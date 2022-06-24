@@ -50,7 +50,6 @@ app.post("/api/users/login", (req, res) => {
         message: "제공된 이메일에 해당하는 유저가 없습니다",
       });
     }
-    console.log('ID exists')
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch) {
         return res.json({
@@ -59,9 +58,6 @@ app.post("/api/users/login", (req, res) => {
         });
       } else {
         user.generateToken((err, user) => {
-          console.log(user.name)
-          
-          
           if (err) return res.status(400).send(err);
           res.cookie("x_auth", user.token)
             .status(200)
@@ -97,9 +93,9 @@ app.get('/api/users/logout', auth, (req, res) => {
                         })
 })
 
-// app.get('/api/hello', (req, res) => {
-//   res.send('Hello, React!')
-// })
+app.get('/api/hello', (req, res) => {
+  res.send('Hello, React!')
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
