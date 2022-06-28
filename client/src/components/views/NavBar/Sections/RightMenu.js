@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
+  
   const navigate = useNavigate();
 
 
@@ -24,7 +25,10 @@ function RightMenu(props) {
     });
   };
 
-  if (user.userData && !user.userData.isAuth) {
+  console.log('RightMenu : ' + user)
+
+
+  if (user.payload && !user.payload.isAuth) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">

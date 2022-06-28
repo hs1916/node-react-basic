@@ -26,6 +26,7 @@ function MovieDetail(props) {
 
         fetchInfo.then(r => r.json())
             .then(r => {
+                console.log(r)
                 setMovie(r)
             })
 

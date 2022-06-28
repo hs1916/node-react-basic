@@ -15,22 +15,22 @@ function App() {
   const AuthLoginPage = Auth(LoginPage, false);
   const AuthRegisterPage = Auth(RegisterPage, false);
   const AuthMovieDetail = Auth(MovieDetail, null);
-  const AuthFavoritePaje = Auth(FavoritePage, true)
+  const AuthFavoritePage = Auth(FavoritePage, true)
 
   return (
     <Suspense fallback={<div> Loading... </div>}>
-      {/* <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}> */}
-      <div>
         <BrowserRouter>
-        <NavBar />
-          <Routes>
-            <Route exact path="/" element={<AuthLandingPage />} />
-            <Route exact path="/login" element={<AuthLoginPage />} />
-            <Route exact path="/register" element={<AuthRegisterPage />} />
-            <Route exact path="/favorite" element={<AuthMovieDetail />} />
-          </Routes>
+          <NavBar />
+          <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
+            <Routes  >
+              <Route exact path="/" element={<AuthLandingPage />} />
+              <Route exact path="/login" element={<AuthLoginPage />} />
+              <Route exact path="/register" element={<AuthRegisterPage />} />
+              <Route exact path="/movie/:movieId" element={<AuthMovieDetail />} />
+              <Route exact path="/favorite" element={<AuthFavoritePage />} />
+            </Routes>
+          </div>
         </BrowserRouter>
-      </div>
       <Footer />
     </Suspense>
   );
