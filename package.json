@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "backend": "nodemon index.js",
+    "backend": "nodemon server/index.js",
     "start": "node index.js",
     "debug": "node --inspect-brk index.js",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""

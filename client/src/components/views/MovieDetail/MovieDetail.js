@@ -5,6 +5,8 @@ import MainImage from '../LandingPage/Section/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import GridCards from "../commons/GridCards";
 import { Row } from "antd";
+import Favorite from './Sections/Favorite';
+
 
 function MovieDetail(props) {
 
@@ -15,6 +17,7 @@ function MovieDetail(props) {
 
     useEffect(() => {
 
+
         const info_endpoint = `${API_URL}/movie/${propParams.movieId}?api_key=${API_KEY}&language=ko-KR`;
         const credit_endpoint = `${API_URL}/movie/${propParams.movieId}/credits?api_key=${API_KEY}&language=ko-KR`;
 
@@ -23,16 +26,12 @@ function MovieDetail(props) {
 
         fetchInfo.then(r => r.json())
             .then(r => {
-                console.log('fetch Info : ' + r)
                 setMovie(r)
-                console.log(r)
             })
 
         fetchCrew.then(response => response.json())
             .then(response => {
-                console.log(' fetch Crew: ' + response)
                 setCrew(response.cast)
-                console.log(response)
             })
     }, []);
 
@@ -54,6 +53,16 @@ function MovieDetail(props) {
 
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auth' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                    {Movie && <Favorite
+                        movieInfo={Movie}
+                        movieId={propParams.movieId}
+                        userFrom={localStorage.getItem('userId')}
+                        // userFrom=
+                        />
+                    }
+                    
+                </div>
 
                 {/* Movie Info */}
                 {Movie && <MovieInfo
@@ -70,9 +79,6 @@ function MovieDetail(props) {
                 </div>
                 {ActorToggle && <Row gutter={[16, 16]}>
                                     {Crew && Crew.map((cast, index) => {
-                                        console.log(cast)
-                                        console.log(index)
-
                                         return (
                                             <React.Fragment key={index}>
                                                 <GridCards

@@ -3,8 +3,6 @@ import { Descriptions, Badge } from 'antd';
 
 function MovieInfo(props) {
 
-    console.log(props)
-
     let { movie } = props;
 
     return (
